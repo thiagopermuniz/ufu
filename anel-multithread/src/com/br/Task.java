@@ -1,23 +1,12 @@
 package com.br;
 
+import java.io.*;
+import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
-
+//CONNECTS TO A SERVER, RECEIVES MESSAGE AND RETURNS IT WITH THE FIRST LOWERCASE LETTER TO UPPERCASE, IF ANY.
 class Task implements Runnable {
+    //FLAGS USED TO HELP THREADS SYNC
     static AtomicBoolean flag = new AtomicBoolean(false);
-    private String message;
-
-    public Task(String message) {
-        this.message = message;
-    }
-
-    @Override
-    public void run() {
-        try {
-            processMessageText();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     public synchronized boolean beingProcessed() {
         return flag.get();
@@ -31,45 +20,60 @@ class Task implements Runnable {
         flag.set(false);
     }
 
-    public String getMessage() {
-        return message;
-    }
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                if (!beingProcessed()) {
+                    //LOCKS EXECUTION
+                    hold();
+                    Socket clientSocket = new Socket("localhost", 12345);
+                    InputStreamReader in = new InputStreamReader(clientSocket.getInputStream());
+                    BufferedReader br = new BufferedReader(in);
+                    String message;
+                    boolean changed  = false;
+                    //READS FROM SERVER
+                    while ((message = br.readLine())!=null) {
+                        if(message.length() != 0) {
+                            System.out.println(message);
+                            //PROCESS THE MESSAGE
+                            char text[] = message.toCharArray();
+                            for (int i = 0; i < text.length; i++) {
+                                if (Character.isLowerCase(text[i])) {
+                                    text[i] = Character.toUpperCase(text[i]);
+                                    message = (new String(text));
+                                    //FLAG AS CHANGED MESSAGE
+                                    changed = true;
+                                    break;
+                                }
+                            }
+                            //WRITES BACK TO SERVER
+                            PrintWriter pw = new PrintWriter(clientSocket.getOutputStream());
+                            pw.println(message);
+                            pw.flush();
+                            pw.close();
+                            Thread.sleep(1000l);
+                            break;
+                        }
+                    }
+                    br.close();
+                    in.close();
+                    clientSocket.close();
+                    //UNLOCKS EXECUTION
+                    free();
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void processMessageText() throws InterruptedException {
-
-        //RODA ETERNAMENTE ATÉ NÃO MODIFICAR NADA AO EXECUTAR;
-        while (true) {
-            //SE FLAG DA TASK FOR FALSE (DESOCUPADO)
-            if (!beingProcessed()) {
-                //FLAG QUE VALIDA SE ACHOU E MODIFICOU ALGUM CHAR LOWERCASE
-                boolean changed = false;
-                //OCUPA
-                hold();
-                System.out.println(Thread.currentThread().getName() + ": " + getMessage());
-                char texto[] = getMessage().toCharArray();
-                for (int i = 0; i < texto.length; i++) {
-                    if (Character.isLowerCase(texto[i])) {
-                        texto[i] = Character.toUpperCase(texto[i]);
-                        //REPASSA A MENSAGEM (??)
-                        setMessage(new String(texto));
-                        changed = true;
-                        break;
+                    //INTERRUPTS THREAD IN CASE NOTHING CHANGED IN THE MESSAGE
+                    if(!changed){
+                        Thread.currentThread().interrupt();
+                        return;
                     }
                 }
-                //LIBERA FLAG DA TASK
-                free();
-                Thread.sleep(1000l);
 
-                if (!changed) {
-                    break;
-
-                }
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
 }
+
