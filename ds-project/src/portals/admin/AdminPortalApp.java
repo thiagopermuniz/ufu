@@ -1,4 +1,4 @@
-package portal.server;
+package portals.admin;
 
 public class AdminPortalApp {
 }
