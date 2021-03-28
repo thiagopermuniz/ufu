@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class CustomerClient {
-    static String welcomeMessage = "Bem vindo ao Portal, digito o numero do comando desejado:\n";
+    static String welcomeMessage = "Bem vindo ao Portal de Clientes, digito o numero do comando desejado:\n";
     static String menu =    "1 Inserir Tarefa\n" +
                             "2 Modificar Tarefa\n" +
                             "3 Listar Tarefas\n" +

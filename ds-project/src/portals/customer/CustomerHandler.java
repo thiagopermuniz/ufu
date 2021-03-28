@@ -24,104 +24,96 @@ public class CustomerHandler implements Runnable {
         try {
             Message message = new Message();
             Object obj;
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-                while ((obj = in.readObject()) != null) {
-                    message = (Message) obj;
-                    break;
+            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            while ((obj = in.readObject()) != null) {
+                message = (Message) obj;
+                break;
+            }
+            Map<String, String> customerTasks = getCustomerTasks(message.getCid());
+            Task task = message.getTask();
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            BigInteger cid = message.getCid();
+            if (message.getOperation() == 1) {
+                customerTasks.put(task.getTitle(), task.getDescription());
+                oos.writeObject(customerTasks);
+                database.put(cid, bos.toByteArray());
+                System.out.println(message.toString());
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                out.writeObject("Tarefa criada com sucesso!");
+                out.close();
+                in.close();
+                socket.close();
+                return;
+
+            } else if (message.getOperation() == 2) {
+                String value = customerTasks.get(task.getTitle());
+                if (value == null) {
+                    ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                    out.writeObject("Tarefa não encontrada!");
+                    out.close();
+                } else {
+                    customerTasks.put(task.getTitle(), task.getDescription());
+                    ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                    out.writeObject("Tarefa modificada com sucesso!");
+                    out.close();
                 }
-                Map<String, String> tasks = getTasks(message.getCid());
-                Task task = message.getTask();
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                ObjectOutputStream oos = new ObjectOutputStream(bos);
-                BigInteger cid = message.getCid();
-                if (message.getOperation() == 1) {
-                    tasks.put(task.getTitle(), task.getDescription());
-                    oos.writeObject(tasks);
-                    database.put(cid, bos.toByteArray());
-                    System.out.println(message.toString());
+                oos.writeObject(customerTasks);
+                database.put(cid, bos.toByteArray());
+                System.out.println(message.toString());
+
+                in.close();
+                socket.close();
+                return;
+
+            } else if (message.getOperation() == 3) {
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                out.writeObject("Listando tarefas:\n" + customerTasks.toString());
+                out.close();
+                oos.writeObject(customerTasks);
+                database.put(cid, bos.toByteArray());
+                System.out.println(message.toString());
+                in.close();
+                socket.close();
+                return;
+
+            } else if (message.getOperation() == 4) {
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                out.writeObject("Tarefas apagadas:\n" + customerTasks.toString());
+                database.remove(cid);
+                System.out.println(message.toString());
+                in.close();
+                socket.close();
+                return;
+
+            } else if (message.getOperation() == 5) {
+                String value = customerTasks.get(task.getTitle());
+                if (value == null) {
                     ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                    out.writeObject("Tarefa criada com sucesso!");
+                    out.writeObject("Tarefa não encontrada!");
                     out.close();
-                    in.close();
-                    socket.close();
-                    return;
-
-                }else if (message.getOperation() == 2) {
-                    String value = tasks.get(task.getTitle());
-                    if(value == null) {
-                        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                        out.writeObject("Tarefa não encontrada!");
-                        out.close();
-                    }else{
-                        tasks.put(task.getTitle(), task.getDescription());
-                        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                        out.writeObject("Tarefa modificada com sucesso!");
-                        out.close();
-                    }
-                    oos.writeObject(tasks);
-                    database.put(cid, bos.toByteArray());
-                    System.out.println(message.toString());
-
-                    in.close();
-                    socket.close();
-                    return;
-
-                }else if (message.getOperation() == 3) {
+                } else {
+                    customerTasks.remove(task.getTitle());
                     ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                    out.writeObject("Tarefas:\n"+tasks.toString());
+                    out.writeObject("Tarefa removida com sucesso!");
                     out.close();
-                    oos.writeObject(tasks);
-                    database.put(cid, bos.toByteArray());
-                    System.out.println(message.toString());
-                    in.close();
-                    socket.close();
-                    return;
-
-                }else if (message.getOperation() == 4) {
-                    ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                    out.writeObject("Tarefas apagadas:\n"+tasks.toString());
-                    database.remove(cid);
-                    System.out.println(message.toString());
-                    in.close();
-                    socket.close();
-                    return;
-
-                }else if (message.getOperation() == 5) {
-                    String value = tasks.get(task.getTitle());
-                    if(value == null) {
-                        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                        out.writeObject("Tarefa não encontrada!");
-                        out.close();
-                    }else{
-                        tasks.remove(task.getTitle());
-                        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                        out.writeObject("Tarefa removida com sucesso!");
-                        out.close();
-                    }
-                    oos.writeObject(tasks);
-                    database.put(cid, bos.toByteArray());
-                    System.out.println(message.toString());
-
-                    in.close();
-                    socket.close();
-                    return;
-
-                }else if (message.getOperation() == 0) {
-                    ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                    out.writeObject("Obrigado!");
-                    out.close();
-                    in.close();
-                    socket.close();
-
-                    Thread.currentThread().interrupt();
-                    return;
                 }
+                oos.writeObject(customerTasks);
+                database.put(cid, bos.toByteArray());
+                System.out.println(message.toString());
+
+                in.close();
+                socket.close();
+                return;
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    Hashtable getTasks(BigInteger cid) {
+
+    private Hashtable getCustomerTasks(BigInteger cid) {
         byte[] task = database.get(cid);
         try {
             if (task == null || task.length == 0) {
@@ -131,8 +123,8 @@ public class CustomerHandler implements Runnable {
                 ObjectInputStream is = new ObjectInputStream(in);
                 return (Hashtable) is.readObject();
             }
-        }catch (Exception e){
-            System.out.println("Failed to get tasks: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to get tasks: " + e.getMessage());
             e.printStackTrace();
         }
         return new Hashtable();
