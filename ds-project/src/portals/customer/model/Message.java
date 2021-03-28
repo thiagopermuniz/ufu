@@ -8,10 +8,7 @@ public class Message implements Serializable {
     private BigInteger cid;
     private Task task;
 
-    public Message(int operation, BigInteger cid, Task task) {
-        this.operation = operation;
-        this.cid = cid;
-        this.task = task;
+    public Message() {
     }
 
     public BigInteger getCid() {
@@ -36,5 +33,14 @@ public class Message implements Serializable {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "operation=" + operation +
+                ", cid=" + cid +
+                ", task=" + task +
+                '}';
     }
 }

@@ -4,13 +4,12 @@ import java.math.BigInteger;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CustomerPortalApp {
     public static void main(String[] args) {
-        Map<BigInteger, byte[]> database = new Hashtable<>();
+        Hashtable<BigInteger, byte[]> database = new Hashtable<>();
         try {
             ExecutorService executor = Executors.newFixedThreadPool(1);
             ServerSocket serverSocket = new ServerSocket(12345);
@@ -19,7 +18,6 @@ public class CustomerPortalApp {
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 customerHandler = new CustomerHandler(clientSocket, database);
-                System.out.println("New client at port " + clientSocket.getPort());
                 executor.submit(customerHandler);
             }
         } catch (Exception e) {

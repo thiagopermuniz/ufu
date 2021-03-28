@@ -13,6 +13,9 @@ public class Task implements Serializable {
         this.description = description;
     }
 
+    public Task() {
+    }
+
     public String getTitle() {
         return title;
     }
@@ -29,5 +32,12 @@ public class Task implements Serializable {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
 
