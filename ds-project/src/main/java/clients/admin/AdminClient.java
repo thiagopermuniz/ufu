@@ -1,5 +1,11 @@
 package clients.admin;
 
+import grpc.AdminGrpc;
+import grpc.Request;
+import grpc.Response;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -14,6 +20,13 @@ public class AdminClient {
 
 
     public static void main(String[] args) {
+
+        ManagedChannel channel =
+                ManagedChannelBuilder.forAddress("localhost",9090).usePlaintext().build();
+        AdminGrpc.AdminBlockingStub adminStub = AdminGrpc.newBlockingStub(channel);
+        Request request = Request.newBuilder().setCid("123").setText("Thiago").build();
+        Response response = adminStub.hello(request);
+        System.out.println(response.getStatus());
         Scanner scanner = new Scanner(System.in);
         String tmp;
         try {
@@ -47,6 +60,7 @@ public class AdminClient {
                         tmp = scanner.nextLine();
                         break;
                 }
+
                 System.out.println("\n");
             }
         } catch (Exception e) {

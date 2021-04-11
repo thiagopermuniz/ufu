@@ -23,10 +23,10 @@ public class CustomerClient {
         Scanner scanner = new Scanner(System.in);
         Message message = new Message();
         String tmp;
+        BigInteger cid;
         Task task = new Task();
         try {
             System.out.print(welcomeMessage);
-            message.setCid(new BigInteger("1234"));
             while(true) {
                 System.out.print(menu);
                 int option = scanner.nextInt();
@@ -36,6 +36,10 @@ public class CustomerClient {
                         System.out.println("Saindo do sistema...");
                         return;
                     case 1:
+                        System.out.print("Digite o seu CID:\n>>");
+                        cid = scanner.nextBigInteger();
+                        scanner.nextLine();
+                        message.setCid(cid);
                         System.out.print("Digite o título da tarefa:\n>>");
                         tmp = scanner.nextLine();
                         task.setTitle(tmp);
@@ -45,6 +49,10 @@ public class CustomerClient {
                         message.setTask(task);
                         break;
                     case 2:
+                        System.out.print("Digite o seu CID:\n>>");
+                        cid = scanner.nextBigInteger();
+                        scanner.nextLine();
+                        message.setCid(cid);
                         System.out.print("Digite o título da tarefa que quer modificar:\n>>");
                         tmp = scanner.nextLine();
                         task.setTitle(tmp);
@@ -54,16 +62,28 @@ public class CustomerClient {
                         message.setTask(task);
                         break;
                     case 3:
+                        System.out.print("Digite o seu CID:\n>>");
+                        cid = scanner.nextBigInteger();
+                        scanner.nextLine();
+                        message.setCid(cid);
                         System.out.println("Listando tarefas:");
                         break;
                     case 4:
+                        System.out.print("Digite o seu CID:\n>>");
+                        cid = scanner.nextBigInteger();
+                        scanner.nextLine();
+                        message.setCid(cid);
                         System.out.println("Apagando tarefas:");
                         break;
                     case 5:
+                        System.out.print("Digite o seu CID:\n>>");
+                        cid = scanner.nextBigInteger();
+                        scanner.nextLine();
+                        message.setCid(cid);
                         System.out.print("Digite o título da tarefa que deseja apagar:\n>>");
                         tmp = scanner.nextLine();
                         task.setTitle(tmp);
-                        message.setTask(task);
+                        message.setTask(task);  
                         break;
                 }
                 message.setOperation(option);

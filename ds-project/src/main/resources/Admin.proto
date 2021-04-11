@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package grpc;
+
+message Request {
+  string cid = 1;
+  string text = 2;
+}
+
+message Response {
+  string status = 1;
+}
+
+service Admin {
+  rpc hello(Request) returns (Response);
+}

@@ -12,11 +12,13 @@ import java.util.Map;
 public class CustomerHandler implements Runnable {
 
     private Socket socket;
-    private Hashtable<BigInteger, byte[]> database;
+    private Hashtable<BigInteger, byte[]> tasksDatabase;
+    private Hashtable<BigInteger, byte[]> userDatabase;
 
-    public CustomerHandler(Socket socket, Hashtable<BigInteger, byte[]> database) {
+    public CustomerHandler(Socket socket, Hashtable<BigInteger, byte[]> tasksDatabase, Hashtable<BigInteger, byte[]> usersDatabase) {
         this.socket = socket;
-        this.database = database;
+        this.tasksDatabase = tasksDatabase;
+        this.userDatabase = usersDatabase;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class CustomerHandler implements Runnable {
             if (message.getOperation() == 1) {
                 customerTasks.put(task.getTitle(), task.getDescription());
                 oos.writeObject(customerTasks);
-                database.put(cid, bos.toByteArray());
+                tasksDatabase.put(cid, bos.toByteArray());
                 System.out.println(message.toString());
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 out.writeObject("Tarefa criada com sucesso!");
@@ -59,7 +61,7 @@ public class CustomerHandler implements Runnable {
                     out.close();
                 }
                 oos.writeObject(customerTasks);
-                database.put(cid, bos.toByteArray());
+                tasksDatabase.put(cid, bos.toByteArray());
                 System.out.println(message.toString());
 
                 in.close();
@@ -71,7 +73,7 @@ public class CustomerHandler implements Runnable {
                 out.writeObject("Listando tarefas:\n" + customerTasks.toString());
                 out.close();
                 oos.writeObject(customerTasks);
-                database.put(cid, bos.toByteArray());
+                tasksDatabase.put(cid, bos.toByteArray());
                 System.out.println(message.toString());
                 in.close();
                 socket.close();
@@ -80,7 +82,7 @@ public class CustomerHandler implements Runnable {
             } else if (message.getOperation() == 4) {
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 out.writeObject("Tarefas apagadas:\n" + customerTasks.toString());
-                database.remove(cid);
+                tasksDatabase.remove(cid);
                 System.out.println(message.toString());
                 in.close();
                 socket.close();
@@ -99,7 +101,7 @@ public class CustomerHandler implements Runnable {
                     out.close();
                 }
                 oos.writeObject(customerTasks);
-                database.put(cid, bos.toByteArray());
+                tasksDatabase.put(cid, bos.toByteArray());
                 System.out.println(message.toString());
 
                 in.close();
@@ -114,7 +116,7 @@ public class CustomerHandler implements Runnable {
     }
 
     private Hashtable getCustomerTasks(BigInteger cid) {
-        byte[] task = database.get(cid);
+        byte[] task = tasksDatabase.get(cid);
         try {
             if (task == null || task.length == 0) {
                 return new Hashtable();
