@@ -27,12 +27,12 @@ public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
             responseObserver.onCompleted();
             return;
         }else {
-            usersDatabase.put(new BigInteger(request.getCid()), request.getCustomerData().getBytes());
+            usersDatabase.put(new BigInteger(request.getCid()), request.getData().getBytes());
         }
 
         try {
             mqttClient = new MqttClient("tcp://localhost:1883", UUID.randomUUID().toString(), new MemoryPersistence());
-            MqttMessage message = new MqttMessage((request.getCid()+"|"+request.getCustomerData()).getBytes());
+            MqttMessage message = new MqttMessage((request.getCid()+"|"+request.getData()).getBytes());
             System.out.println("Writting: "+message.toString());
             mqttClient.connect();
             message.setQos(2);
@@ -64,12 +64,12 @@ public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
             responseObserver.onCompleted();
             return;
         }else{
-            usersDatabase.put(new BigInteger(request.getCid()), request.getCustomerData().getBytes());
+            usersDatabase.put(new BigInteger(request.getCid()), request.getData().getBytes());
         }
 
         try {
             mqttClient = new MqttClient("tcp://localhost:1883", UUID.randomUUID().toString(), new MemoryPersistence());
-            MqttMessage message = new MqttMessage((request.getCid()+"|"+request.getCustomerData()).getBytes());
+            MqttMessage message = new MqttMessage((request.getCid()+"|"+request.getData()).getBytes());
             System.out.println("Writting: "+message.toString());
             mqttClient.connect();
             message.setQos(2);

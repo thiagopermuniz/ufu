@@ -43,7 +43,7 @@ public class AdminClient {
                         System.out.print("Digite o nome ou outro atributo único do cliente:\n>>");
                         data = scanner.nextLine();
 
-                        Request createRequest = Request.newBuilder().setCid(cid).setCustomerData(data).build();
+                        Request createRequest = Request.newBuilder().setCid(cid).setData(data).build();
                         Response createResponse = adminStub.insertCustomer(createRequest);
                         System.out.println(createResponse.getResponse());
                         break;
@@ -53,7 +53,7 @@ public class AdminClient {
                         System.out.print("Digite os novos dados do cliente:\n>>");
                         data = scanner.nextLine();
 
-                        Request modifyRequest = Request.newBuilder().setCid(cid).setCustomerData(data).build();
+                        Request modifyRequest = Request.newBuilder().setCid(cid).setData(data).build();
                         Response modifyResponse = adminStub.modifyCustomer(modifyRequest);
                         System.out.println(modifyResponse.getResponse());
                         break;

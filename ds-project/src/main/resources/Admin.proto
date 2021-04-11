@@ -4,7 +4,7 @@ package grpc;
 
 message Request {
   string cid = 1;
-  string customerData = 2;
+  string data = 2;
 }
 
 message Response {
