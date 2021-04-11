@@ -12,8 +12,8 @@ import java.util.Map;
 public class CustomerHandler implements Runnable {
 
     private Socket socket;
-    private Hashtable<BigInteger, byte[]> tasksDatabase;
-    private Hashtable<BigInteger, byte[]> userDatabase;
+    static Hashtable<BigInteger, byte[]> tasksDatabase;
+    static Hashtable<BigInteger, byte[]> userDatabase;
 
     public CustomerHandler(Socket socket, Hashtable<BigInteger, byte[]> tasksDatabase, Hashtable<BigInteger, byte[]> usersDatabase) {
         this.socket = socket;
@@ -36,6 +36,14 @@ public class CustomerHandler implements Runnable {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             BigInteger cid = message.getCid();
+            if(userDatabase.get(cid) == null) {
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                out.writeObject("CID não contrado!");
+                out.close();
+                in.close();
+                socket.close();
+                return;
+            }
             if (message.getOperation() == 1) {
                 customerTasks.put(task.getTitle(), task.getDescription());
                 oos.writeObject(customerTasks);

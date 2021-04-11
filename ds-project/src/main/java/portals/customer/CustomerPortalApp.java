@@ -1,6 +1,6 @@
 package portals.customer;
 
-import portals.mqttp.MqttSubscriber;
+import portals.customer.mqttp.MqttSubscriber;
 
 import java.math.BigInteger;
 import java.net.ServerSocket;
@@ -15,7 +15,7 @@ public class CustomerPortalApp {
     static Hashtable<BigInteger, byte[]> tasksDatabase = new Hashtable();
 
     public static void main(String[] args) {
-        MqttSubscriber subscriber = new MqttSubscriber(usersDatabase);
+        MqttSubscriber subscriber = new MqttSubscriber();
         try {
             subscriber.doTheThing();
             ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -30,5 +30,13 @@ public class CustomerPortalApp {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Hashtable<BigInteger, byte[]> getUsersDatabase() {
+        return usersDatabase;
+    }
+
+    public static void setUsersDatabase(Hashtable<BigInteger, byte[]> usersDatabase) {
+        CustomerPortalApp.usersDatabase = usersDatabase;
     }
 }

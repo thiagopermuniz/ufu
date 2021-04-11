@@ -8,12 +8,12 @@ public interface ResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string status = 1;</code>
+   * <code>string response = 1;</code>
    */
-  java.lang.String getStatus();
+  java.lang.String getResponse();
   /**
-   * <code>string status = 1;</code>
+   * <code>string response = 1;</code>
    */
   com.google.protobuf.ByteString
-      getStatusBytes();
+      getResponseBytes();
 }

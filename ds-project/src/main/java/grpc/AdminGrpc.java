@@ -28,35 +28,131 @@ public final class AdminGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<grpc.Request,
-      grpc.Response> getHelloMethod;
+      grpc.Response> getInsertCustomerMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "hello",
+      fullMethodName = SERVICE_NAME + '/' + "insertCustomer",
       requestType = grpc.Request.class,
       responseType = grpc.Response.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<grpc.Request,
-      grpc.Response> getHelloMethod() {
-    io.grpc.MethodDescriptor<grpc.Request, grpc.Response> getHelloMethod;
-    if ((getHelloMethod = AdminGrpc.getHelloMethod) == null) {
+      grpc.Response> getInsertCustomerMethod() {
+    io.grpc.MethodDescriptor<grpc.Request, grpc.Response> getInsertCustomerMethod;
+    if ((getInsertCustomerMethod = AdminGrpc.getInsertCustomerMethod) == null) {
       synchronized (AdminGrpc.class) {
-        if ((getHelloMethod = AdminGrpc.getHelloMethod) == null) {
-          AdminGrpc.getHelloMethod = getHelloMethod = 
+        if ((getInsertCustomerMethod = AdminGrpc.getInsertCustomerMethod) == null) {
+          AdminGrpc.getInsertCustomerMethod = getInsertCustomerMethod = 
               io.grpc.MethodDescriptor.<grpc.Request, grpc.Response>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "grpc.Admin", "hello"))
+                  "grpc.Admin", "insertCustomer"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.Request.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.Response.getDefaultInstance()))
-                  .setSchemaDescriptor(new AdminMethodDescriptorSupplier("hello"))
+                  .setSchemaDescriptor(new AdminMethodDescriptorSupplier("insertCustomer"))
                   .build();
           }
         }
      }
-     return getHelloMethod;
+     return getInsertCustomerMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<grpc.Request,
+      grpc.Response> getModifyCustomerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "modifyCustomer",
+      requestType = grpc.Request.class,
+      responseType = grpc.Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<grpc.Request,
+      grpc.Response> getModifyCustomerMethod() {
+    io.grpc.MethodDescriptor<grpc.Request, grpc.Response> getModifyCustomerMethod;
+    if ((getModifyCustomerMethod = AdminGrpc.getModifyCustomerMethod) == null) {
+      synchronized (AdminGrpc.class) {
+        if ((getModifyCustomerMethod = AdminGrpc.getModifyCustomerMethod) == null) {
+          AdminGrpc.getModifyCustomerMethod = getModifyCustomerMethod = 
+              io.grpc.MethodDescriptor.<grpc.Request, grpc.Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "grpc.Admin", "modifyCustomer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.Request.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.Response.getDefaultInstance()))
+                  .setSchemaDescriptor(new AdminMethodDescriptorSupplier("modifyCustomer"))
+                  .build();
+          }
+        }
+     }
+     return getModifyCustomerMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<grpc.Request,
+      grpc.Response> getQueryCustomerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "queryCustomer",
+      requestType = grpc.Request.class,
+      responseType = grpc.Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<grpc.Request,
+      grpc.Response> getQueryCustomerMethod() {
+    io.grpc.MethodDescriptor<grpc.Request, grpc.Response> getQueryCustomerMethod;
+    if ((getQueryCustomerMethod = AdminGrpc.getQueryCustomerMethod) == null) {
+      synchronized (AdminGrpc.class) {
+        if ((getQueryCustomerMethod = AdminGrpc.getQueryCustomerMethod) == null) {
+          AdminGrpc.getQueryCustomerMethod = getQueryCustomerMethod = 
+              io.grpc.MethodDescriptor.<grpc.Request, grpc.Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "grpc.Admin", "queryCustomer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.Request.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.Response.getDefaultInstance()))
+                  .setSchemaDescriptor(new AdminMethodDescriptorSupplier("queryCustomer"))
+                  .build();
+          }
+        }
+     }
+     return getQueryCustomerMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<grpc.Request,
+      grpc.Response> getDeleteCustomerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "deleteCustomer",
+      requestType = grpc.Request.class,
+      responseType = grpc.Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<grpc.Request,
+      grpc.Response> getDeleteCustomerMethod() {
+    io.grpc.MethodDescriptor<grpc.Request, grpc.Response> getDeleteCustomerMethod;
+    if ((getDeleteCustomerMethod = AdminGrpc.getDeleteCustomerMethod) == null) {
+      synchronized (AdminGrpc.class) {
+        if ((getDeleteCustomerMethod = AdminGrpc.getDeleteCustomerMethod) == null) {
+          AdminGrpc.getDeleteCustomerMethod = getDeleteCustomerMethod = 
+              io.grpc.MethodDescriptor.<grpc.Request, grpc.Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "grpc.Admin", "deleteCustomer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.Request.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.Response.getDefaultInstance()))
+                  .setSchemaDescriptor(new AdminMethodDescriptorSupplier("deleteCustomer"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteCustomerMethod;
   }
 
   /**
@@ -88,20 +184,62 @@ public final class AdminGrpc {
 
     /**
      */
-    public void hello(grpc.Request request,
+    public void insertCustomer(grpc.Request request,
         io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
-      asyncUnimplementedUnaryCall(getHelloMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getInsertCustomerMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void modifyCustomer(grpc.Request request,
+        io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
+      asyncUnimplementedUnaryCall(getModifyCustomerMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void queryCustomer(grpc.Request request,
+        io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
+      asyncUnimplementedUnaryCall(getQueryCustomerMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void deleteCustomer(grpc.Request request,
+        io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
+      asyncUnimplementedUnaryCall(getDeleteCustomerMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getHelloMethod(),
+            getInsertCustomerMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 grpc.Request,
                 grpc.Response>(
-                  this, METHODID_HELLO)))
+                  this, METHODID_INSERT_CUSTOMER)))
+          .addMethod(
+            getModifyCustomerMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                grpc.Request,
+                grpc.Response>(
+                  this, METHODID_MODIFY_CUSTOMER)))
+          .addMethod(
+            getQueryCustomerMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                grpc.Request,
+                grpc.Response>(
+                  this, METHODID_QUERY_CUSTOMER)))
+          .addMethod(
+            getDeleteCustomerMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                grpc.Request,
+                grpc.Response>(
+                  this, METHODID_DELETE_CUSTOMER)))
           .build();
     }
   }
@@ -126,10 +264,34 @@ public final class AdminGrpc {
 
     /**
      */
-    public void hello(grpc.Request request,
+    public void insertCustomer(grpc.Request request,
         io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getHelloMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getInsertCustomerMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void modifyCustomer(grpc.Request request,
+        io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getModifyCustomerMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void queryCustomer(grpc.Request request,
+        io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getQueryCustomerMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void deleteCustomer(grpc.Request request,
+        io.grpc.stub.StreamObserver<grpc.Response> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getDeleteCustomerMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +315,30 @@ public final class AdminGrpc {
 
     /**
      */
-    public grpc.Response hello(grpc.Request request) {
+    public grpc.Response insertCustomer(grpc.Request request) {
       return blockingUnaryCall(
-          getChannel(), getHelloMethod(), getCallOptions(), request);
+          getChannel(), getInsertCustomerMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public grpc.Response modifyCustomer(grpc.Request request) {
+      return blockingUnaryCall(
+          getChannel(), getModifyCustomerMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public grpc.Response queryCustomer(grpc.Request request) {
+      return blockingUnaryCall(
+          getChannel(), getQueryCustomerMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public grpc.Response deleteCustomer(grpc.Request request) {
+      return blockingUnaryCall(
+          getChannel(), getDeleteCustomerMethod(), getCallOptions(), request);
     }
   }
 
@@ -179,14 +362,41 @@ public final class AdminGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.Response> hello(
+    public com.google.common.util.concurrent.ListenableFuture<grpc.Response> insertCustomer(
         grpc.Request request) {
       return futureUnaryCall(
-          getChannel().newCall(getHelloMethod(), getCallOptions()), request);
+          getChannel().newCall(getInsertCustomerMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<grpc.Response> modifyCustomer(
+        grpc.Request request) {
+      return futureUnaryCall(
+          getChannel().newCall(getModifyCustomerMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<grpc.Response> queryCustomer(
+        grpc.Request request) {
+      return futureUnaryCall(
+          getChannel().newCall(getQueryCustomerMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<grpc.Response> deleteCustomer(
+        grpc.Request request) {
+      return futureUnaryCall(
+          getChannel().newCall(getDeleteCustomerMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_HELLO = 0;
+  private static final int METHODID_INSERT_CUSTOMER = 0;
+  private static final int METHODID_MODIFY_CUSTOMER = 1;
+  private static final int METHODID_QUERY_CUSTOMER = 2;
+  private static final int METHODID_DELETE_CUSTOMER = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -205,8 +415,20 @@ public final class AdminGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_HELLO:
-          serviceImpl.hello((grpc.Request) request,
+        case METHODID_INSERT_CUSTOMER:
+          serviceImpl.insertCustomer((grpc.Request) request,
+              (io.grpc.stub.StreamObserver<grpc.Response>) responseObserver);
+          break;
+        case METHODID_MODIFY_CUSTOMER:
+          serviceImpl.modifyCustomer((grpc.Request) request,
+              (io.grpc.stub.StreamObserver<grpc.Response>) responseObserver);
+          break;
+        case METHODID_QUERY_CUSTOMER:
+          serviceImpl.queryCustomer((grpc.Request) request,
+              (io.grpc.stub.StreamObserver<grpc.Response>) responseObserver);
+          break;
+        case METHODID_DELETE_CUSTOMER:
+          serviceImpl.deleteCustomer((grpc.Request) request,
               (io.grpc.stub.StreamObserver<grpc.Response>) responseObserver);
           break;
         default:
@@ -270,7 +492,10 @@ public final class AdminGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new AdminFileDescriptorSupplier())
-              .addMethod(getHelloMethod())
+              .addMethod(getInsertCustomerMethod())
+              .addMethod(getModifyCustomerMethod())
+              .addMethod(getQueryCustomerMethod())
+              .addMethod(getDeleteCustomerMethod())
               .build();
         }
       }

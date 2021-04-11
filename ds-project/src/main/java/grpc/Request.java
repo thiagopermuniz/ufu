@@ -17,7 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private Request() {
     cid_ = "";
-    text_ = "";
+    customerData_ = "";
   }
 
   @java.lang.Override
@@ -53,7 +53,7 @@ private static final long serialVersionUID = 0L;
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            text_ = s;
+            customerData_ = s;
             break;
           }
           default: {
@@ -122,34 +122,34 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int TEXT_FIELD_NUMBER = 2;
-  private volatile java.lang.Object text_;
+  public static final int CUSTOMERDATA_FIELD_NUMBER = 2;
+  private volatile java.lang.Object customerData_;
   /**
-   * <code>string text = 2;</code>
+   * <code>string customerData = 2;</code>
    */
-  public java.lang.String getText() {
-    java.lang.Object ref = text_;
+  public java.lang.String getCustomerData() {
+    java.lang.Object ref = customerData_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      text_ = s;
+      customerData_ = s;
       return s;
     }
   }
   /**
-   * <code>string text = 2;</code>
+   * <code>string customerData = 2;</code>
    */
   public com.google.protobuf.ByteString
-      getTextBytes() {
-    java.lang.Object ref = text_;
+      getCustomerDataBytes() {
+    java.lang.Object ref = customerData_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      text_ = b;
+      customerData_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -173,8 +173,8 @@ private static final long serialVersionUID = 0L;
     if (!getCidBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, cid_);
     }
-    if (!getTextBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, text_);
+    if (!getCustomerDataBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, customerData_);
     }
     unknownFields.writeTo(output);
   }
@@ -188,8 +188,8 @@ private static final long serialVersionUID = 0L;
     if (!getCidBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, cid_);
     }
-    if (!getTextBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, text_);
+    if (!getCustomerDataBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, customerData_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -209,8 +209,8 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && getCid()
         .equals(other.getCid());
-    result = result && getText()
-        .equals(other.getText());
+    result = result && getCustomerData()
+        .equals(other.getCustomerData());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -224,8 +224,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CID_FIELD_NUMBER;
     hash = (53 * hash) + getCid().hashCode();
-    hash = (37 * hash) + TEXT_FIELD_NUMBER;
-    hash = (53 * hash) + getText().hashCode();
+    hash = (37 * hash) + CUSTOMERDATA_FIELD_NUMBER;
+    hash = (53 * hash) + getCustomerData().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -361,7 +361,7 @@ private static final long serialVersionUID = 0L;
       super.clear();
       cid_ = "";
 
-      text_ = "";
+      customerData_ = "";
 
       return this;
     }
@@ -390,7 +390,7 @@ private static final long serialVersionUID = 0L;
     public grpc.Request buildPartial() {
       grpc.Request result = new grpc.Request(this);
       result.cid_ = cid_;
-      result.text_ = text_;
+      result.customerData_ = customerData_;
       onBuilt();
       return result;
     }
@@ -443,8 +443,8 @@ private static final long serialVersionUID = 0L;
         cid_ = other.cid_;
         onChanged();
       }
-      if (!other.getText().isEmpty()) {
-        text_ = other.text_;
+      if (!other.getCustomerData().isEmpty()) {
+        customerData_ = other.customerData_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -545,71 +545,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object text_ = "";
+    private java.lang.Object customerData_ = "";
     /**
-     * <code>string text = 2;</code>
+     * <code>string customerData = 2;</code>
      */
-    public java.lang.String getText() {
-      java.lang.Object ref = text_;
+    public java.lang.String getCustomerData() {
+      java.lang.Object ref = customerData_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        text_ = s;
+        customerData_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string text = 2;</code>
+     * <code>string customerData = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getTextBytes() {
-      java.lang.Object ref = text_;
+        getCustomerDataBytes() {
+      java.lang.Object ref = customerData_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        text_ = b;
+        customerData_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string text = 2;</code>
+     * <code>string customerData = 2;</code>
      */
-    public Builder setText(
+    public Builder setCustomerData(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      text_ = value;
+      customerData_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string text = 2;</code>
+     * <code>string customerData = 2;</code>
      */
-    public Builder clearText() {
+    public Builder clearCustomerData() {
       
-      text_ = getDefaultInstance().getText();
+      customerData_ = getDefaultInstance().getCustomerData();
       onChanged();
       return this;
     }
     /**
-     * <code>string text = 2;</code>
+     * <code>string customerData = 2;</code>
      */
-    public Builder setTextBytes(
+    public Builder setCustomerDataBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      text_ = value;
+      customerData_ = value;
       onChanged();
       return this;
     }

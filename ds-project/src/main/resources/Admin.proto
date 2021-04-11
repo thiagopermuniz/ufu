@@ -4,13 +4,16 @@ package grpc;
 
 message Request {
   string cid = 1;
-  string text = 2;
+  string customerData = 2;
 }
 
 message Response {
-  string status = 1;
+  string response = 1;
 }
 
 service Admin {
-  rpc hello(Request) returns (Response);
+  rpc insertCustomer(Request) returns (Response);
+  rpc modifyCustomer(Request) returns (Response);
+  rpc queryCustomer(Request) returns (Response);
+  rpc deleteCustomer(Request) returns (Response);
 }

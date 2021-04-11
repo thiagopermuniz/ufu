@@ -1,10 +1,11 @@
-package portals.mqttp;
+package portals.customer.mqttp;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import portals.customer.CustomerPortalApp;
 
 import java.math.BigInteger;
 import java.util.Hashtable;
@@ -12,12 +13,9 @@ import java.util.Hashtable;
 public class MqttSubscriber implements MqttCallback {
 
     MqttClient client;
-    Hashtable<BigInteger, byte[]> usersDatabase;
-    public MqttSubscriber(Hashtable<BigInteger, byte[]> usersDatabase) {
-        this.usersDatabase = usersDatabase;
-    }
 
     public void doTheThing() {
+
         try {
             client = new MqttClient("tcp://localhost:1883", "Subscriber");
             client.connect();
@@ -39,7 +37,9 @@ public class MqttSubscriber implements MqttCallback {
             System.out.println("Message from topic " + topic + " received: \"" + message.toString() + "\"");
             String[] values = message.toString().split("\\|");
             BigInteger cid = new BigInteger(values[0]);
-            usersDatabase.put(cid, values[1].getBytes());
+            Hashtable<BigInteger, byte[]> hash = CustomerPortalApp.getUsersDatabase();
+            hash.put(cid, values[1].getBytes());
+            CustomerPortalApp.setUsersDatabase(hash);
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -18,12 +18,12 @@ public interface RequestOrBuilder extends
       getCidBytes();
 
   /**
-   * <code>string text = 2;</code>
+   * <code>string customerData = 2;</code>
    */
-  java.lang.String getText();
+  java.lang.String getCustomerData();
   /**
-   * <code>string text = 2;</code>
+   * <code>string customerData = 2;</code>
    */
   com.google.protobuf.ByteString
-      getTextBytes();
+      getCustomerDataBytes();
 }
