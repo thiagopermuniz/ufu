@@ -34,11 +34,17 @@ public class MqttSubscriber implements MqttCallback {
     @Override
     public void messageArrived(String topic, MqttMessage message) {
         try {
-            System.out.println("Message from topic " + topic + " received: \"" + message.toString() + "\"");
-            String[] values = message.toString().split("\\|");
-            BigInteger cid = new BigInteger(values[0]);
             Hashtable<BigInteger, byte[]> hash = CustomerPortalApp.getUsersDatabase();
-            hash.put(cid, values[1].getBytes());
+            BigInteger cid;
+            System.out.println("Message from topic \"" + topic + "\" received: \"" + message.toString() + "\"");
+            String[] values = message.toString().split("\\|");
+            cid = new BigInteger(values[0]);
+            if(values.length == 1){
+                hash.remove(cid);
+            }else {
+                hash.put(cid, values[1].getBytes());
+            }
+
             CustomerPortalApp.setUsersDatabase(hash);
         }catch (Exception e){
             e.printStackTrace();

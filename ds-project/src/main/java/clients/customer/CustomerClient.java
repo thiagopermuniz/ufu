@@ -21,13 +21,14 @@ public class CustomerClient {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Message message = new Message();
+        Message message;
         String tmp;
         BigInteger cid;
         Task task = new Task();
         try {
             System.out.print(welcomeMessage);
             while(true) {
+                message = new Message();
                 System.out.print(menu);
                 int option = scanner.nextInt();
                 scanner.nextLine();

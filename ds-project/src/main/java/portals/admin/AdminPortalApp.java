@@ -12,7 +12,7 @@ import java.math.BigInteger;
 import java.util.Hashtable;
 import java.util.UUID;
 
-public class AdminService extends grpc.AdminGrpc.AdminImplBase {
+public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
 
     static Hashtable<BigInteger, byte[]> usersDatabase = new Hashtable();
 
@@ -37,6 +37,7 @@ public class AdminService extends grpc.AdminGrpc.AdminImplBase {
             message.setQos(2);
             mqttClient.publish("Customer Accounts", message);
             mqttClient.disconnect();
+
             Response.Builder response = Response.newBuilder();
             response.setResponse("Sucesso");
             responseObserver.onNext(response.build());
@@ -72,6 +73,7 @@ public class AdminService extends grpc.AdminGrpc.AdminImplBase {
             message.setQos(2);
             mqttClient.publish("Customer Accounts", message);
             mqttClient.disconnect();
+
             Response.Builder response = Response.newBuilder();
             response.setResponse("Sucesso");
             responseObserver.onNext(response.build());
@@ -127,6 +129,7 @@ public class AdminService extends grpc.AdminGrpc.AdminImplBase {
             message.setQos(2);
             mqttClient.publish("Customer Accounts", message);
             mqttClient.disconnect();
+
             Response.Builder response = Response.newBuilder();
             response.setResponse("Sucesso");
             responseObserver.onNext(response.build());

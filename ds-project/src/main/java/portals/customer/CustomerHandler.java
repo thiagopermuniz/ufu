@@ -38,7 +38,7 @@ public class CustomerHandler implements Runnable {
             BigInteger cid = message.getCid();
             if(userDatabase.get(cid) == null) {
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                out.writeObject("CID não contrado!");
+                out.writeObject("Usuario não encontrado!");
                 out.close();
                 in.close();
                 socket.close();
