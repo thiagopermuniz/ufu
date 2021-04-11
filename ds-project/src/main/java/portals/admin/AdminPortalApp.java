@@ -25,6 +25,7 @@ public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
             response.setResponse("Cliente já existe");
             responseObserver.onNext(response.build());
             responseObserver.onCompleted();
+            return;
         }else {
             usersDatabase.put(new BigInteger(request.getCid()), request.getCustomerData().getBytes());
         }
@@ -61,6 +62,7 @@ public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
             response.setResponse("Cliente não encontrado");
             responseObserver.onNext(response.build());
             responseObserver.onCompleted();
+            return;
         }else{
             usersDatabase.put(new BigInteger(request.getCid()), request.getCustomerData().getBytes());
         }
@@ -97,6 +99,7 @@ public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
                 response.setResponse("Cliente não encontrado");
                 responseObserver.onNext(response.build());
                 responseObserver.onCompleted();
+                return;
             } else {
                 Response.Builder response = Response.newBuilder();
                 response.setResponse(new String(data));
@@ -117,6 +120,7 @@ public class AdminPortalApp extends grpc.AdminGrpc.AdminImplBase {
             response.setResponse("Cliente não encontrado");
             responseObserver.onNext(response.build());
             responseObserver.onCompleted();
+            return;
         }else{
             usersDatabase.remove(new BigInteger(request.getCid()));
         }
