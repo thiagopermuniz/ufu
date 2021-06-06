@@ -1,6 +1,7 @@
 package portals.customer;
 
 import portals.customer.mqttp.MqttSubscriber;
+import portals.ratis.StateMachine;
 
 import java.math.BigInteger;
 import java.net.ServerSocket;
@@ -15,9 +16,10 @@ public class CustomerPortalApp {
     static Hashtable<BigInteger, byte[]> tasksDatabase = new Hashtable();
 
     public static void main(String[] args) {
-        MqttSubscriber subscriber = new MqttSubscriber();
+//        MqttSubscriber subscriber = new MqttSubscriber();
         try {
-            subscriber.doTheThing();
+//            subscriber.doTheThing();
+
             ExecutorService executor = Executors.newFixedThreadPool(1);
             ServerSocket serverSocket = new ServerSocket(12345);
             CustomerHandler customerHandler;
